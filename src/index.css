@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: 243 246 251; --surface: 255 255 255; --line: 225 231 241; --ink: 11 27 58; --muted: 96 110 136; --btn: 11 27 58;
+}
+.dark {
+  --paper: 7 12 24; --surface: 15 23 42; --line: 34 47 74; --ink: 230 237 250; --muted: 146 162 190; --btn: 70 100 255;
+}
+
+@layer base {
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body { @apply bg-paper text-ink antialiased; font-feature-settings: 'cv11', 'ss01'; }
+  h1, h2, h3 { letter-spacing: -0.015em; }
+  :focus-visible { outline: 2px solid #0EA89A; outline-offset: 2px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 active:scale-[.98]; }
+  .btn-primary { @apply btn bg-btn text-white shadow-soft hover:brightness-110; }
+  .btn-tag { @apply btn bg-tag text-night shadow-soft hover:brightness-95; }
+  .btn-ghost { @apply btn border border-line bg-surface text-ink hover:bg-paper; }
+  .btn-danger { @apply btn bg-lost text-white hover:brightness-95; }
+  .input { @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/70 transition focus:border-found focus:outline-none focus:ring-4 focus:ring-found/15; }
+  .input-error { @apply border-lost focus:border-lost focus:ring-lost/15; }
+  .panel { @apply rounded-2xl border border-line bg-surface shadow-soft; }
+  .mesh {
+    background:
+      radial-gradient(60% 80% at 100% 0%, rgb(14 168 154 / .55), transparent 60%),
+      radial-gradient(50% 70% at 0% 100%, rgb(255 197 61 / .30), transparent 60%),
+      radial-gradient(40% 60% at 60% 110%, rgb(240 86 74 / .35), transparent 60%),
+      #0B1B3A;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
